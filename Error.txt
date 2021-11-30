@@ -1,0 +1,11 @@
+iOS
+
+#1  Error 
+No such file or directory react-native/scripts/libraries
+PhaseScriptExecution failed with a nonzero exit code
+
+#2  Solution
+moving the folder to a directory where the path contain no spaces and it works and build the app successfully.
+example /abc/add/project
+
+

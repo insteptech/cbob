@@ -1,0 +1,20 @@
+<script>
+    const fun = async () => {
+        const response = await fetch('https://safe101.com.au/safe101-demo/api/loginApi/validate',
+        {
+            method : 'POST',
+            headers : {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({
+                "j_username":"42SP3",
+                "j_password":"345678"
+            })
+        });
+        // const result = response.json();
+        console.log("response--->",response);
+    }
+        
+    fun();
+</script>
