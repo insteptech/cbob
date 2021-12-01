@@ -6,10 +6,10 @@ import { Validator } from '../../constents/Validation';
 import { Auth } from '../../server communication/BaseUrl';
 import { getRequest } from '../../server communication/request/get';
 import { postRequest } from '../../server communication/request/post';
+import { AXIOS_INSTANCE_SERVICE_WITHOUT_HEADERS as instance } from '../../service/api/instance';
 import { colorSet } from '../../styles/colors';
 import store from '../index'
 import { ADD_SAFES, CHANGE_SAFE_POSITION, CHANGE_USER_NAME, REMOVE_SAFES } from '../type';
-
 export const addSafeName = (name) => {
     store.dispatch({
         type: CHANGE_USER_NAME,
@@ -92,7 +92,7 @@ export const initMobile = async (safe, key) => {
     });
     const text = await response.text();
     const responseJson = JSON.parse(text.replace(")]}',", ''));
-    console.log('responseJson',responseJson);
+    console.log('responseJson', responseJson);
 }
 
 // export const list = async (safe, key) => {
@@ -108,3 +108,23 @@ export const initMobile = async (safe, key) => {
 // }
 
 
+export const apiCall = (data) => {
+    return async dispatch => {
+        return instance.get('safe101-test/api/structureApi/getStructM', {
+            params: {
+                module: "PEOPLE",
+                id: "",
+                incAllCtrlDocs: true,
+                incAllRes: true,
+                incUnlinkedRes: true,
+                level: -1
+            },
+            auth: {
+                username: 'Kevin',
+                password: '456789'
+            }
+        })
+            .then(res => console.log(res, "apiCall"))
+            .catch(err => console.error(err))
+    }
+}
